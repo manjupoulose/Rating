@@ -1,0 +1,70 @@
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <style>
+      body {
+        font-family: Verdana;
+      }
+      h1,
+      h2,
+      h3 {
+        color: darkblue;
+      }
+      .rating-circle {
+        height: 2em;
+        width: 2em;
+        border: 0.1em solid black;
+        border-radius: 1.1em;
+        display: inline-block;
+        margin: 0;
+        padding: 0.1em;
+      }
+      .rating-hover {
+        background-color: yellow;
+      }
+      .rating-chosen {
+        background-color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Contoso Web Developer Conference</h1>
+    <h2>Finding elements using jQuery</h2>
+    <div>
+      This session is about identifying elements using jQuery methods and
+      selectors.
+    </div>
+    <h3>Rate this session</h3>
+    <div id="rating-container">
+      <div class="rating-circle"></div>
+      <div class="rating-circle"></div>
+      <div class="rating-circle"></div>
+      <div class="rating-circle"></div>
+      <div class="rating-circle"></div>
+    </div>
+    <script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.4.min.js"></script>
+    <script>
+      // your answer would go here
+      $(document).ready(function () {
+        //highlighting the mouse over rating circle with yellow and remove highlighting when mouse is removed.
+        $(".rating-circle").hover(function () {
+          var current = $(this);
+          $(".rating-circle").each(function (index) {
+            $(this).addClass("rating-hover");
+            if (index == current.index()) {
+              return false;
+            }
+          });
+        });
+        //Highlighting the clicked  rating circle with green
+        $(".rating-circle").mouseleave(function () {
+          $(".rating-circle").removeClass("rating-hover");
+        });
+        $(".rating-circle").click(function () {
+          $(".rating-circle").removeClass("rating-chosen");
+          $(".rating-hover").addClass("rating-chosen");
+        });
+      });
+    </script>
+  </body>
+</html>
